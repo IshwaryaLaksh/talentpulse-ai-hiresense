@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>TalentPulse for HireSense.ai</title>
+<style>
+:root{--bg:#f5f7fa;--card:#fff;--ink:#15202b;--mut:#5b6770;--line:#d9e0e8;--pri:#1f3a5f;--acc:#1b998b;--warn:#e08a1e;--bad:#c8553d;--soft:#eef3f8;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#10171f;--card:#18212b;--ink:#e8eef4;--mut:#9aa8b5;--line:#2a3745;--pri:#7fb0e8;--acc:#3cc4b3;--warn:#f2a541;--bad:#e5806a;--soft:#1f2b37}}
+:root[data-theme="dark"]{--bg:#10171f;--card:#18212b;--ink:#e8eef4;--mut:#9aa8b5;--line:#2a3745;--pri:#7fb0e8;--acc:#3cc4b3;--warn:#f2a541;--bad:#e5806a;--soft:#1f2b37}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:14px/1.45 system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
+header{background:var(--pri);color:#fff;padding:14px 18px;display:flex;gap:14px;align-items:center;flex-wrap:wrap}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) header{background:#1d2c3d;color:#e8eef4}}
+header b{font-size:18px}header small{opacity:.8}
+nav{display:flex;gap:4px;margin-left:auto;flex-wrap:wrap}
+nav button{background:transparent;color:inherit;border:1px solid rgba(255,255,255,.35);padding:7px 13px;border-radius:8px;cursor:pointer;font:inherit}
+nav button.on{background:#fff;color:#1f2b3a;font-weight:600}
+main{max-width:1180px;margin:0 auto;padding:14px}
+.note{background:var(--soft);border-left:4px solid var(--acc);padding:8px 12px;border-radius:6px;color:var(--mut);margin-bottom:12px;font-size:13px}
+.grid{display:grid;grid-template-columns:340px 1fr;gap:14px}@media(max-width:860px){.grid{grid-template-columns:1fr}}
+.card{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:14px;margin-bottom:12px}
+h3{margin:0 0 8px;font-size:15px}h4{margin:10px 0 4px;font-size:13px;color:var(--mut);text-transform:uppercase;letter-spacing:.04em}
+textarea{width:100%;min-height:118px;border:1px solid var(--line);border-radius:8px;padding:8px;background:var(--bg);color:var(--ink);font:inherit;resize:vertical}
+button.pri{background:var(--acc);color:#fff;border:0;padding:8px 14px;border-radius:8px;cursor:pointer;font-weight:600}
+button.sm{background:var(--soft);color:var(--ink);border:1px solid var(--line);padding:4px 9px;border-radius:7px;cursor:pointer;font:inherit;font-size:12px}
+.chip{display:inline-block;padding:2px 8px;border-radius:99px;font-size:12px;margin:2px 3px 2px 0;border:1px solid var(--line);background:var(--soft);cursor:default}
+.chip.must{background:var(--pri);color:#fff;border-color:var(--pri);cursor:pointer}.chip.nice{cursor:pointer}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]) .chip.must{color:#10171f}}
+.chip.ok{background:#1b998b22;border-color:var(--acc)}.chip.adj{background:#e08a1e22;border-color:var(--warn)}.chip.no{background:#c8553d1f;border-color:var(--bad)}
+.sl{display:grid;grid-template-columns:1fr 44px;gap:2px 8px;align-items:center;margin:5px 0}.sl label{font-size:13px}.sl output{text-align:right;font-weight:600}
+.sl input{grid-column:1/3;width:100%;accent-color:var(--acc)}
+.row{display:flex;gap:8px;flex-wrap:wrap;align-items:center}.sw{display:flex;gap:6px;align-items:center;font-size:13px;margin:4px 0}
+.cand{display:grid;grid-template-columns:54px 1fr;gap:12px}.ring{width:54px;height:54px;border-radius:50%;display:grid;place-items:center;font-weight:700;background:conic-gradient(var(--acc) calc(var(--p)*1%),var(--soft) 0)}
+.ring span{width:42px;height:42px;border-radius:50%;background:var(--card);display:grid;place-items:center;font-size:14px}
+.bars{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:4px 12px;margin:6px 0}.bar{font-size:11px;color:var(--mut)}
+.bar i{display:block;height:6px;border-radius:4px;background:var(--soft);overflow:hidden;margin-top:2px}.bar i b{display:block;height:100%;background:var(--acc)}.bar.na i b{background:repeating-linear-gradient(45deg,var(--line),var(--line) 4px,transparent 4px,transparent 8px)}
+.meta{color:var(--mut);font-size:12px}.star{float:right}
+.hb{display:grid;grid-template-columns:92px 1fr 70px;gap:8px;align-items:center;margin:4px 0;font-size:12px}.hb i{display:block;height:12px;border-radius:4px;background:var(--soft)}.hb i b{display:block;height:100%;border-radius:4px;background:var(--pri)}
+.kpi{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin-bottom:12px}.kpi div{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:10px 12px}.kpi b{font-size:22px;display:block;color:var(--pri)}.kpi span{font-size:12px;color:var(--mut)}
+.two{display:grid;grid-template-columns:1fr 1fr;gap:14px}@media(max-width:860px){.two{grid-template-columns:1fr}}
+.vs{width:100%;border-collapse:collapse;font-size:13px}.vs td,.vs th{border-bottom:1px solid var(--line);padding:7px 6px;text-align:left;vertical-align:top}.vs th{color:var(--mut);font-weight:600}
+.tag{font-size:11px;padding:1px 7px;border-radius:6px;background:var(--soft);border:1px solid var(--line)}
+</style></head><body>
+<header><div><b>TalentPulse</b> <small>for HireSense.ai · Bengaluru (HSR Layout)</small></div>
+<nav id="nav"><button data-t="m" class="on">Match</button><button data-t="k">Market intelligence</button><button data-t="w">Why it’s different</button></nav></header>
+<main>
+<div class="note">Prototype. Candidates shown are <b>synthetic demo profiles</b> (no real person appears). Market figures are real aggregates from 384,035 de-duplicated profiles in the audited HireSense.ai extract (QA and testing talent, 1–12 years).</div>
+
+<section id="m"><div class="grid"><div>
+<div class="card"><h3>1 · Upload or paste a job description</h3>
+<textarea id="jd">Senior QA Automation Engineer – Bengaluru
+5–8 years of experience. Must have: Selenium, Playwright, API testing, Java, SQL.
+Good to have: Jenkins, CI/CD, Cypress, Docker.
+Budget up to ₹18 LPA. Hybrid, immediate to 30 days notice preferred.</textarea>
+<div class="row" style="margin-top:8px"><button class="pri" id="go">Analyse JD</button><button class="sm" id="pre1">Preset: SDET</button><button class="sm" id="pre2">Preset: Manual QA</button></div>
+<h4>Read from the JD (tap to switch must ↔ nice)</h4><div id="parsed"></div></div>
+<div class="card"><h3>2 · Your weight matrix</h3><div id="sliders"></div>
+<div class="meta" id="wsum"></div>
+<div class="sw"><input type="checkbox" id="strict"><label for="strict">Hard filter: must-have skills (≥ 60% present)</label></div>
+<div class="sw"><input type="checkbox" id="blind" checked><label for="blind">Blind mode (hide names and institutions)</label></div></div></div>
+<div><div class="kpi" id="kp"></div><div id="res"></div><div class="card" id="exp" style="display:none"></div></div></div></section>
+
+<section id="k" style="display:none"><div class="kpi" id="mk"></div><div class="two"><div class="card"><h3>Where the supply is (est. matching profiles by city)</h3><div id="sup"></div></div>
+<div class="card"><h3>Pay benchmark vs your budget</h3><div id="pay"></div></div></div>
+<div class="two"><div class="card"><h3>Skill scarcity and pay premium</h3><div id="scar"></div></div><div class="card"><h3>Widen the pool: what to relax</h3><div id="rel"></div><h4>Pay by experience band (median current CTC, ₹ lakh)</h4><div id="band"></div></div></div></section>
+
+<section id="w" style="display:none"><div class="card"><h3>What a recruiter gets here that a keyword portal does not</h3>
+<table class="vs"><tr><th>Capability</th><th>Typical portal / ATS search</th><th>TalentPulse</th></tr>
+<tr><td>Ranking logic</td><td>Opaque relevance score</td><td>Client-set weight matrix per role, every score decomposed into criteria</td></tr>
+<tr><td>Missing data</td><td>Blank treated as a miss</td><td>“Not stated” is excluded and re-weighted, never counted as “does not meet”</td></tr>
+<tr><td>Synonyms</td><td>Exact keywords</td><td>Skill graph: adjacent skills (Playwright ↔ Cypress ↔ Selenium) earn partial credit</td></tr>
+<tr><td>Trust</td><td>One ranked list</td><td>Rank-stability band: does the order survive ±25% weight changes?</td></tr>
+<tr><td>Fairness</td><td>Names and colleges visible</td><td>Blind mode; no scoring on name, institution, gender proxies or popularity</td></tr>
+<tr><td>Market context</td><td>None</td><td>Supply by city, scarcity, pay benchmark and “relax this skill” advice from the same JD</td></tr>
+<tr><td>Duplicates</td><td>Same person repeated</td><td>Audited pool: 32.7% duplicate rows removed, repeat profiles flagged</td></tr></table></div>
+<div class="card"><h3>Roadmap to a sellable HireSense.ai product</h3>
+<p><span class="tag">Pilot</span> JD upload (PDF/Word), shortlist export to ATS, per-recruiter weight templates, audit log of every ranking.</p>
+<p><span class="tag">Scale</span> Outreach-ready ranking (open-to-work signal), offer-acceptance estimator once outcome data exists, drift monitoring, team dashboards.</p>
+<p><span class="tag">Trust</span> DPDP consent trail per profile, retention timers, human-labelled benchmark (NDCG@10) published to each client.</p></div></section>
+</main>
+<script>
+const MK={n:384035,med:7.6,sk:{"manual testing":[219261,7,[53377,39433,32431,23298,11591,10652]],"automation testing":[162835,8,[40848,32881,23889,17346,6693,7902]],"api testing":[160530,8,[37742,32902,22103,15413,8592,9303]],"selenium":[111211,8.2,[27975,21264,15687,12239,4447,5931]],"playwright":[52391,8.8,[12860,11051,7691,6576,1651,2810]],"cypress":[19875,10,[4826,4065,2589,2009,762,1196]],"appium":[24132,9.7,[6382,3964,2861,3150,914,1626]],"jira":[145010,8,[35572,29840,19446,16270,7189,7547]],"sql":[143543,7.5,[36063,28499,19835,15217,7772,6940]],"java":[127982,7.3,[30928,26189,17720,14525,5356,6658]],"python":[71694,8,[23785,10607,9600,6235,2482,3250]],"javascript":[52686,7.5,[12383,9833,7148,6471,2046,3047]],"typescript":[25272,9,[6246,5220,4129,2976,778,1279]],"postman":[87177,7.5,[20666,19023,11290,9077,4088,4922]],"rest assured":[42000,9,[9969,9630,5152,5939,1305,2454]],"jmeter":[28786,8.7,[6144,5406,3361,2512,1425,2203]],"jenkins":[66483,9.1,[17888,14191,8920,8373,2194,3447]],"git":[60938,8,[16012,12722,8121,8135,2053,2904]],"cucumber":[47294,9.6,[10691,9995,6832,7857,1502,2136]],"testng":[84773,8,[18794,19202,11604,11461,3336,4434]],"performance testing":[24919,8.5,[6265,4402,3294,2100,1144,1536]],"mobile testing":[37975,8,[8180,6460,5349,3948,2268,2537]],"ci/cd":[25095,8.4,[7218,5591,3653,2172,815,1267]],"docker":[11922,9.6,[4068,2129,1343,759,425,674]],"aws":[19397,10.5,[6118,3366,2546,1847,695,939]]},
+bands:{"0-2":3.5,"2-4":4.9,"4-6":7.5,"6-8":11.2,"8-10":15,"10-12":19.3,"12-15":21.7},C:["Bengaluru","Pune","Hyderabad","Chennai","Mumbai","Noida"],CN:[96484,64462,58085,40686,19113,17707],CM:[9,8,8,7,7,8]};
+const SYN={"selenium webdriver":"selenium","rest-assured":"rest assured","restassured":"rest assured","ci cd":"ci/cd","cicd":"ci/cd","api automation":"api testing","rest api":"api testing","pw":"playwright","perf testing":"performance testing","load testing":"performance testing","js":"javascript","ts":"typescript"};
+const ADJ={playwright:["cypress","selenium"],cypress:["playwright","selenium"],selenium:["playwright","cypress"],"rest assured":["postman","api testing"],postman:["rest assured","api testing"],"api testing":["postman","rest assured"],jenkins:["ci/cd"],"ci/cd":["jenkins"],java:["testng"],testng:["java"],python:["javascript"],typescript:["javascript"],javascript:["typescript"],jmeter:["performance testing"],"performance testing":["jmeter"],appium:["mobile testing"],"mobile testing":["appium"]};
+const CRIT=[["skills","Skills match",40],["exp","Experience fit",20],["loc","Location fit",10],["sal","Salary fit",10],["sem","Text similarity (NLP)",15],["fresh","Freshness / availability",5]];
+let W={},JD={must:[],nice:[],lo:5,hi:8,city:"Bengaluru",budget:18},STAR=new Set(),CANDS=[];
+const $=s=>document.querySelector(s),vocab=Object.keys(MK.sk);
+// seeded candidates (synthetic)
+let seed=7;const rnd=()=>(seed=(seed*16807)%2147483647)/2147483647,pick=a=>a[Math.floor(rnd()*a.length)];
+const FN=["Aarav","Diya","Kabir","Meera","Rohan","Ananya","Vikram","Ishita","Arjun","Nisha","Karthik","Pooja","Sanjay","Divya","Rahul","Sneha"],LN=["Rao","Nair","Iyer","Shetty","Menon","Reddy","Kulkarni","Das","Patil","Gowda","Joshi","Pillai"];
+const ARCH=[["selenium","java","testng","api testing","rest assured","jenkins","git","sql","ci/cd","automation testing"],["playwright","typescript","javascript","api testing","postman","cypress","ci/cd","git","automation testing"],["manual testing","jira","sql","api testing","postman"],["python","selenium","api testing","docker","aws","jenkins","automation testing","git"],["jmeter","performance testing","java","jenkins","sql","api testing"],["appium","mobile testing","java","selenium","testng","jira"]];
+const TITLES=["QA Automation Engineer","SDET","Senior Test Engineer","Test Automation Lead","QA Engineer","Performance Test Engineer","Mobile QA Engineer"];
+for(let i=0;i<90;i++){const a=pick(ARCH),sk=a.filter(()=>rnd()<.8);for(let j=0;j<2;j++)if(rnd()<.6)sk.push(pick(vocab));
+ const exp=Math.round((1+Math.pow(rnd(),1.3)*11)*10)/10,b=exp<2?"0-2":exp<4?"2-4":exp<6?"4-6":exp<8?"6-8":exp<10?"8-10":exp<12?"10-12":"12-15";
+ const ci=Math.floor(Math.pow(rnd(),1.7)*6),pref=[MK.C[ci]].concat(rnd()<.5?[pick(MK.C)]:[]);
+ CANDS.push({id:"TP-"+String(1000+i*7),name:pick(FN)+" "+pick(LN),title:pick(TITLES),exp,city:MK.C[ci],pref,sk:[...new Set(sk)],sal:rnd()<.12?null:Math.round(MK.bands[b]*(.7+rnd()*.7)*10)/10,notice:rnd()<.2?null:pick([15,30,30,60,90]),act:Math.floor(rnd()*rnd()*80),edu:pick(["B.E. (CSE)","B.Tech (IT)","MCA","B.Sc (CS)"])})}
+CANDS.forEach(c=>c.text=c.title+" "+c.sk.join(" "));
+const norm=t=>{t=t.toLowerCase();for(const k in SYN)t=t.split(k).join(SYN[k]);return t};
+function parseJD(){const t=norm($("#jd").value),parts=t.split(/good to have|nice to have|preferred skills|plus:/),f=s=>vocab.filter(v=>s.includes(v));
+ JD.nice=f(parts.slice(1).join(" "));JD.must=f(parts[0]).filter(v=>!JD.nice.includes(v));
+ let m=t.match(/(\d+)\s*[–\-to]+\s*(\d+)\s*(?:years|yrs)/);if(m){JD.lo=+m[1];JD.hi=+m[2]}
+ JD.city=MK.C.find(c=>t.includes(c.toLowerCase()))||"Bengaluru";m=[...t.matchAll(/(\d+(?:\.\d+)?)\s*(?:lpa|lakh)/g)].pop();JD.budget=m?+m[1]:null;draw()}
+function sliders(){$("#sliders").innerHTML=CRIT.map(([k,l])=>`<div class="sl"><label for="w_${k}">${l}</label><output id="o_${k}">${W[k]}</output><input type="range" id="w_${k}" min="0" max="60" value="${W[k]}"></div>`).join("");
+ CRIT.forEach(([k])=>$("#w_"+k).oninput=e=>{W[k]=+e.target.value;$("#o_"+k).textContent=W[k];draw()})}
+function preset(n){const p=n==1?[40,20,10,10,15,5]:[20,25,15,10,20,10];CRIT.forEach(([k],i)=>W[k]=p[i]);sliders();draw()}
+function score(c,w){const all=JD.must.map(s=>[s,2]).concat(JD.nice.map(s=>[s,1])),have=new Set(c.sk);let g=0,t=0,hit=[],adj=[],miss=[];
+ all.forEach(([s,x])=>{t+=x;if(have.has(s)){g+=x;hit.push(s)}else if((ADJ[s]||[]).some(a=>have.has(a))){g+=x*.5;adj.push(s)}else miss.push(s)});
+ const mustHit=JD.must.length?JD.must.filter(s=>have.has(s)).length/JD.must.length:1,r={};
+ r.skills=t?g/t:null;r.exp=c.exp>=JD.lo&&c.exp<=JD.hi?1:Math.max(0,1-.25*Math.min(Math.abs(c.exp-JD.lo),Math.abs(c.exp-JD.hi)));
+ r.loc=c.city===JD.city?1:c.pref.includes(JD.city)?.7:.2;r.sal=c.sal==null||JD.budget==null?null:c.sal<=JD.budget?1:Math.max(0,1-(c.sal-JD.budget)/JD.budget*2);
+ r.sem=cos(c.text,jdtext());r.fresh=c.notice==null?null:Math.max(0,1-c.notice/120)*.6+Math.max(0,1-c.act/90)*.4;
+ let n=0,d=0;CRIT.forEach(([k])=>{if(r[k]!=null){n+=r[k]*w[k];d+=w[k]}});return{tot:d?n/d*100:0,r,hit,adj,miss,mustHit}}
+const jdtext=()=>norm($("#jd").value).replace(/[^a-z0-9\/ ]/g," ");
+function cos(a,b){const tk=s=>s.toLowerCase().replace(/[^a-z0-9\/ ]/g," ").split(/\s+/).filter(x=>x.length>1),A={},B={};tk(a).forEach(x=>A[x]=(A[x]||0)+1);tk(b).forEach(x=>B[x]=(B[x]||0)+1);
+ let d=0,na=0,nb=0;for(const k in A){na+=A[k]**2;if(B[k])d+=A[k]*B[k]*(1+(MK.sk[k]?1:0))}for(const k in B)nb+=B[k]**2;return na&&nb?Math.min(1,d/Math.sqrt(na*nb)*1.4):0}
+function rank(w){return CANDS.map(c=>({c,s:score(c,w)})).filter(x=>!$("#strict").checked||x.s.mustHit>=.6).sort((a,b)=>b.s.tot-a.s.tot)}
+function stab(base){const pos={};base.slice(0,15).forEach((x,i)=>pos[x.c.id]=[i+1,i+1]);
+ for(let k=0;k<25;k++){const w={};CRIT.forEach(([key])=>w[key]=W[key]*(.75+rnd()*.5));const o=rank(w);o.forEach((x,i)=>{const p=pos[x.c.id];if(p){p[0]=Math.min(p[0],i+1);p[1]=Math.max(p[1],i+1)}})}return pos}
+function draw(){const W2=Object.assign({},W),sum=Object.values(W).reduce((a,b)=>a+b,0);$("#wsum").textContent="Weights total "+sum+" (auto-normalised to 100%). Blank fields are re-weighted out.";
+ $("#parsed").innerHTML=JD.must.map(s=>`<span class="chip must" data-s="${s}">${s}</span>`).join("")+JD.nice.map(s=>`<span class="chip nice" data-s="${s}">${s}</span>`).join("")+`<div class="meta">${JD.lo}–${JD.hi} yrs · ${JD.city} · budget ${JD.budget?"₹"+JD.budget+" LPA":"not stated"}</div>`;
+ document.querySelectorAll("#parsed .chip").forEach(e=>e.onclick=()=>{const s=e.dataset.s;if(JD.must.includes(s)){JD.must=JD.must.filter(x=>x!==s);JD.nice.push(s)}else{JD.nice=JD.nice.filter(x=>x!==s);JD.must.push(s)}draw()});
+ const R=rank(W2),pos=stab(R),top=R.slice(0,15),blind=$("#blind").checked;
+ $("#kp").innerHTML=`<div><b>${R.length}</b><span>profiles scored (demo pool of ${CANDS.length})</span></div><div><b>${R.filter(x=>x.s.tot>=70).length}</b><span>strong matches (≥ 70)</span></div><div><b>${top[0]?top[0].s.tot.toFixed(0):"-"}</b><span>best score</span></div><div><b>${STAR.size}</b><span>shortlisted</span></div>`;
+ $("#res").innerHTML=top.map((x,i)=>{const c=x.c,s=x.s,p=pos[c.id]||[i+1,i+1],st=p[1]-p[0]<=2?"Stable":p[1]-p[0]<=5?"Moderate":"Sensitive";
+ return`<div class="card cand"><div class="ring" style="--p:${s.tot.toFixed(0)}"><span>${s.tot.toFixed(0)}</span></div><div><button class="sm star" data-i="${c.id}">${STAR.has(c.id)?"★ Shortlisted":"☆ Shortlist"}</button>
+ <b>#${i+1} · ${blind?"Candidate "+c.id:c.name}</b> <span class="meta">${c.title} · ${c.exp} yrs · ${c.city}${blind?"":" · "+c.edu}</span>
+ <div class="bars">${CRIT.map(([k,l])=>{const v=s.r[k];return`<div class="bar ${v==null?"na":""}">${l.split(" ")[0]} ${v==null?"· not stated":Math.round(v*100)}<i><b style="width:${v==null?100:v*100}%"></b></i></div>`}).join("")}</div>
+ ${s.hit.map(x=>`<span class="chip ok">✓ ${x}</span>`).join("")}${s.adj.map(x=>`<span class="chip adj">≈ ${x} (adjacent skill)</span>`).join("")}${s.miss.map(x=>`<span class="chip no">✗ ${x}</span>`).join("")}
+ <div class="meta">Rank ${p[0]}–${p[1]} under ±25% weight change · <b>${st}</b> · CTC ${c.sal==null?"not stated":"₹"+c.sal+"L"} · notice ${c.notice==null?"not stated":c.notice+"d"}</div></div></div>`}).join("");
+ document.querySelectorAll(".star").forEach(b=>b.onclick=()=>{STAR.has(b.dataset.i)?STAR.delete(b.dataset.i):STAR.add(b.dataset.i);draw();shortlist()});market()}
+function shortlist(){const e=$("#exp");if(!STAR.size){e.style.display="none";return}e.style.display="block";
+ e.innerHTML="<h3>Shortlist (copy into your ATS)</h3><textarea readonly>"+[...STAR].map(i=>{const c=CANDS.find(x=>x.id===i);return[c.id,c.title,c.exp+"y",c.city].join(", ")}).join("\n")+"</textarea>"}
+function share(sk,ci){return sk.reduce((p,s)=>p*(ci==null?MK.sk[s][0]/MK.n:MK.sk[s][2][ci]/MK.CN[ci]),1)}
+function market(){const sk=JD.must.length?JD.must:vocab.slice(0,3),tot=MK.n*share(sk),cs=MK.C.map((c,i)=>MK.CN[i]*share(sk,i)),mx=Math.max(...cs);
+ const band=JD.hi<=2?"0-2":JD.hi<=4?"2-4":(JD.lo+JD.hi)/2<6?"4-6":(JD.lo+JD.hi)/2<8?"6-8":(JD.lo+JD.hi)/2<10?"8-10":"10-12",bm=MK.bands[band],all=JD.must.concat(JD.nice),prem=all.length?all.reduce((a,s)=>a+MK.sk[s][1],0)/all.length/MK.med:1,bench=bm*(1+(prem-1)*.8);
+ $("#mk").innerHTML=`<div><b>${Math.round(tot).toLocaleString("en-IN")}</b><span>est. profiles with all must-haves (independence assumption)</span></div><div><b>₹${bench.toFixed(1)}L</b><span>indicative market CTC for this JD</span></div><div><b>${(tot/MK.n*100).toFixed(1)}%</b><span>of pool qualifies · ${tot/MK.n<.03?"scarce":tot/MK.n<.1?"moderate":"abundant"}</span></div><div><b>${MK.C[cs.indexOf(mx)]}</b><span>deepest city for this profile</span></div>`;
+ $("#sup").innerHTML=MK.C.map((c,i)=>`<div class="hb"><span>${c}</span><i><b style="width:${cs[i]/mx*100}%"></b></i><span>${Math.round(cs[i]).toLocaleString("en-IN")}</span></div>`).join("")+`<div class="meta">Hiring outside ${MK.C[cs.indexOf(mx)]} cuts the pool; remote-friendly JDs widen it.</div>`;
+ const gap=JD.budget?JD.budget-bench:null;$("#pay").innerHTML=`<div class="hb"><span>Market</span><i><b style="width:${Math.min(100,bench/30*100)}%"></b></i><span>₹${bench.toFixed(1)}L</span></div><div class="hb"><span>Your budget</span><i><b style="width:${Math.min(100,(JD.budget||0)/30*100)}%;background:var(--acc)"></b></i><span>${JD.budget?"₹"+JD.budget+"L":"–"}</span></div>
+ <p>${gap==null?"Add a budget to the JD for an offer check.":gap>=0?`Budget sits <b>₹${gap.toFixed(1)}L above</b> the indicative median: competitive, expect good acceptance.`:`Budget is <b>₹${(-gap).toFixed(1)}L below</b> the indicative median: expect drop-offs or widen to ${JD.lo>1?JD.lo-1:1}–${JD.hi-1} years.`}</p><div class="meta">Based on candidates’ current CTC (not offers), band ${band} yrs, skill-weighted.</div>`;
+ const sc=all.map(s=>[s,MK.sk[s]]).sort((a,b)=>a[1][0]-b[1][0]);$("#scar").innerHTML=sc.map(([s,v])=>`<div class="hb"><span>${s}</span><i><b style="width:${v[0]/MK.n*100*1.6}%"></b></i><span>${(v[0]/MK.n*100).toFixed(0)}% · ₹${v[1]}L</span></div>`).join("")||"Add skills to the JD.";
+ const base=share(JD.must),rel=JD.must.map(s=>[s,share(JD.must.filter(x=>x!==s))/base]).sort((a,b)=>b[1]-a[1]);
+ $("#rel").innerHTML=rel.length>1?rel.map(([s,m])=>`<div class="hb"><span>drop ${s}</span><i><b style="width:${Math.min(100,m*25)}%;background:var(--warn)"></b></i><span>${m.toFixed(1)}× pool</span></div>`).join(""):"Needs two or more must-have skills.";
+ $("#band").innerHTML=Object.entries(MK.bands).map(([b,v])=>`<div class="hb"><span>${b} yrs</span><i><b style="width:${v/22*100}%;${b===band?"background:var(--acc)":""}"></b></i><span>₹${v}L</span></div>`).join("")}
+document.querySelectorAll("#nav button").forEach(b=>b.onclick=()=>{document.querySelectorAll("#nav button").forEach(x=>x.classList.remove("on"));b.classList.add("on");["m","k","w"].forEach(t=>$("#"+t).style.display=t===b.dataset.t?"block":"none")});
+$("#go").onclick=parseJD;$("#blind").onchange=draw;$("#strict").onchange=draw;
+$("#pre1").onclick=()=>preset(1);$("#pre2").onclick=()=>{$("#jd").value="QA Engineer (Manual + API) – Pune\n2–4 years. Must have: Manual testing, JIRA, SQL, Postman.\nGood to have: API testing, Selenium.\nBudget up to ₹8 LPA.";parseJD();preset(2)};
+CRIT.forEach(([k,,v])=>W[k]=v);sliders();parseJD();
+</script></body></html>
